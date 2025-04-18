@@ -17,25 +17,21 @@ TL = data(:,5);
 % plot(t, TL); title('Torque [Nm]'); grid on; hold on
 
 %% METODO DE CHEN 1
-StepAmplitude=2; %2 V de entrada en Va
 
-ret = 0.1;
-ts = 0.11 - ret;
+StepAmplitude = 2; % Entrada de tension de 2V
 
+%wr/va
+y1 = w(110)/StepAmplitude;
+t1 = t(110); %t1
 
+y2 = w(120)/StepAmplitude;
+t2 = t(120); %t2
 
-% %wr/va
-% y1 = w(150)/StepAmplitude;
-% t1 = t(150); %t1
-% 
-% y2 = w(200)/StepAmplitude;
-% t2 = t(200); %t2
-% 
-% y3 = w(250)/StepAmplitude;
-% t3 = t(250); %t3
-% 
-% % Tiempo entre muestras
-% ts = t2 - t1;
+y3 = w(130)/StepAmplitude;
+t3 = t(130); %t3
+
+% Tiempo entre muestras
+ts = t2 - t1;
 
 % K=y(00)/U
 k       =       w(end)/StepAmplitude;
@@ -89,8 +85,9 @@ K_tl = (3.63973774664743 - 7.62473632022227)/0.12;
 Km = 1/k;
 Ki = -Ra/(K_tl*Km);
 Bm = 0;
-J = (0.106*Ki*Km)/Ra;
-La = (0.001316*Ki*Km)/J;
+J = (0.0945*Ki*Km)/Ra;
+La = (0.0002148*Ki*Km)/J;
+
 
 % Imax = max(abs(ia));
 % Ra = 1.9/Imax;
